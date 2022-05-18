@@ -23,11 +23,12 @@ class ActivitiesController < ApplicationController
   # POST /activities or /activities.json
   def create
     respond_to do |format|
-      if @activity.new_record?
-        format.html { render :new}
-      else
+      if @saved
         session[:activity_step] = session[:activity_params] = nil
-        format.html { redirect_to activities_path, status: :created, allow_other_host: true}
+        flash[:notice] = "Activity was successfully saved."
+        format.html { redirect_to activities_path, status: :created }
+      else
+        format.html { render :new }
       end
     end
   end
