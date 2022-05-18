@@ -3,12 +3,19 @@
 <h1>Activities</h1>
 
 <div id="activities">
-  <% @activities.each do |activity| %>
-    <%= render activity %>
-    <p>
-      <%= link_to "Show this activity", activity %>
-    </p>
-  <% end %>
+  <table class="table-auto">
+    <tr>
+      <th> Name </th>
+      <th> Address </th>
+      <th> Starts At </th>
+      <th> Ends At </th>
+      <th> Actions </th>
+    </tr>
+    <% @activities.each do |activity| %>
+      <%= render activity %>
+    <% end %>
+
+  </table>
 </div>
 
 <%= link_to "New activity", new_activity_path %>

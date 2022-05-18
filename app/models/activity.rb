@@ -12,6 +12,11 @@ class Activity < ApplicationRecord
     validates_presence_of *attributes, if: lambda { |obj| obj.current_step == step }
   end
 
+  def current_step=(step)
+    step = STEPS.include?(step&.to_sym) ? step.to_sym : STEPS.first
+    @current_step = step
+  end
+
   def current_step
     @current_step ||= STEPS.first
   end

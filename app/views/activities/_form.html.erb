@@ -1,4 +1,8 @@
-<%= form_with(model: activity) do |form| %>
+<div>
+  <h1> <%= "Showing #{current_step_index + 1} of #{total_steps}" %> </h1>
+</div>
+
+<%= form_with(model: activity, data: { turbo: false }) do |form| %>
   <% if activity.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
@@ -11,27 +15,11 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name, class: "form-input" %>
-  </div>
+  <%= render "#{activity.current_step}_step", form: form %>
+
 
   <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address, class: "form-input" %>
-  </div>
-
-  <div>
-    <%= form.label :starts_at, style: "display: block" %>
-    <%= form.datetime_field :starts_at, class: "form-input" %>
-  </div>
-
-  <div>
-    <%= form.label :ends_at, style: "display: block" %>
-    <%= form.datetime_field :ends_at, class: "form-input" %>
-  </div>
-
-  <div>
-    <%= form.submit "Create Activity", class: "btn" %>
+    <p><%= form.submit form_submit_button_text, class: "btn" %></p>
+    <p><%= form.submit "Back", name: "previous_button", class: "btn" unless activity.first_step? %></p>
   </div>
 <% end %>

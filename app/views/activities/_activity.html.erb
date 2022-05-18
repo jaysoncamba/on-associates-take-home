@@ -1,22 +1,10 @@
-<div id="<%= dom_id activity %>">
-  <p>
-    <strong>Name:</strong>
-    <%= activity.name %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= activity.address %>
-  </p>
-
-  <p>
-    <strong>Starts at:</strong>
-    <%= activity.starts_at %>
-  </p>
-
-  <p>
-    <strong>Ends at:</strong>
-    <%= activity.ends_at %>
-  </p>
-
-</div>
+<tr id="<%= dom_id activity %>" >
+  <td> <%= activity.name %> </td>
+  <td> <%= activity.address %> </td>
+  <td> <%= activity.starts_at %> </td>
+  <td> <%= activity.ends_at %> </td>
+  <td>
+    <%= link_to "Edit", edit_activity_path(activity) %>
+    <%= button_to "Destroy", activity, method: :delete, class: "btn" %>
+  </td>
+</tr>
